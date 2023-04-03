@@ -1,6 +1,8 @@
 import ship from './modules/ship.js'
 import './style/style.css';
 
-const sh1 = new ship.ShipConstructor(2);
+console.table(ship.ships);
 
-sh1.hit();
+ship.ships[1].checkHealth();
+ship.ships[1].hit();
+ship.ships[1].checkHealth();
