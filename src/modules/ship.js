@@ -33,11 +33,12 @@ ShipConstructor.prototype.setPos = function(y, x) {
         x++;
         console.log('good')
     }
+
 }
 
 ShipConstructor.prototype.setPosVertical = function(y, x) {
     for (let i = 0; i < this.health; i++) {
-        if (board.board[y][x] != '' || !board[y]) {
+        if (!board.board[y] || board.board[y][x] != '') {
             console.log('error from ship.js');
             board.resetTestBoard();
             return;
