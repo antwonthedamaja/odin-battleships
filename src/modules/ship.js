@@ -24,29 +24,30 @@ function ShipConstructor(name, health) {
 
 ShipConstructor.prototype.setPos = function(y, x) {
     for (let i = 0; i < this.health; i++) {
-        if (board.board[y][x] != '') {
+        if (board.testBoard[y][x] != '') {
             console.log('error from ship.js');
-            board.resetTestBoard();
+            board.loadState();
             return;
         }
         board.testBoard[y][x] = this.name;
         x++;
         console.log('good')
     }
-
+    board.saveState();
 }
 
 ShipConstructor.prototype.setPosVertical = function(y, x) {
     for (let i = 0; i < this.health; i++) {
-        if (!board.board[y] || board.board[y][x] != '') {
+        if (!board.testBoard[y] || board.testBoard[y][x] != '') {
             console.log('error from ship.js');
-            board.resetTestBoard();
+            board.loadState();
             return;
         }
         board.testBoard[y][x] = this.name;
         y++;
         console.log('good')
     }
+    board.saveState();
 }
 
 ShipConstructor.prototype.isSunk = function() {
