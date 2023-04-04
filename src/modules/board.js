@@ -8,18 +8,32 @@ let gameBoard = [['', '', '', '', '', '', ''],
              ['', '', '', '', '', '', ''],
              ['', '', '', '', '', '', '']];
 
-let testBoard = JSON.parse(JSON.stringify(gameBoard));
+let testBoard = structuredClone(gameBoard);
 
 function saveState() {
-    gameBoard = JSON.parse(JSON.stringify(testBoard));
+    gameBoard = structuredClone(testBoard);
 }
 
 function loadState() {
-    testBoard = JSON.parse(JSON.stringify(gameBoard));
+    testBoard = structuredClone(gameBoard);
 }
 
 function recieveAttack(y, x) {
-
+    if (gameBoard[y][x] === 'X') {
+        console.log('attack rejected');
+        return;
+    }
+    if (gameBoard[y][x] != '') {
+        ship.playerShips.forEach(item => {
+            if (gameBoard[y][x] === item.name) {
+                item.hit();
+                gameBoard[y][x] = 'X';
+            }
+        });
+    } else {
+        gameBoard[y][x] = 'X';
+    }
+    loadState()
 }
 
-export {saveState, loadState, testBoard, gameBoard}
+export {recieveAttack, saveState, loadState, testBoard, gameBoard}

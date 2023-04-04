@@ -1,6 +1,8 @@
 import * as board from './board.js';
+import * as computer from './computer.js';
 
-let ships = [];
+let playerShips = [];
+let computerShips = [];
 
 function shipInit() {
     resetShips();
@@ -9,11 +11,18 @@ function shipInit() {
     const destroyer = new ShipConstructor("D", 3);
     const submarine = new ShipConstructor("S", 3);
     const patrolBoat = new ShipConstructor("P", 2);
-    ships.push(carrier, battleship, destroyer, submarine, patrolBoat);
+    playerShips.push(carrier, battleship, destroyer, submarine, patrolBoat);
+    const carrierAI = new ShipConstructor("C", 5);
+    const battleshipAI = new ShipConstructor("B", 4);
+    const destroyerAI = new ShipConstructor("D", 3);
+    const submarineAI = new ShipConstructor("S", 3);
+    const patrolBoatAI = new ShipConstructor("P", 2);
+    computerShips.push(carrierAI, battleshipAI, destroyerAI, submarineAI, patrolBoatAI);
 }
 
 function resetShips() {
-    ships = [];
+    computerShips = [];
+    playerShips = [];
 }
 
 function ShipConstructor(name, health) {
@@ -31,7 +40,6 @@ ShipConstructor.prototype.setPos = function(y, x) {
         }
         board.testBoard[y][x] = this.name;
         x++;
-        console.log('good')
     }
     board.saveState();
 }
@@ -45,19 +53,17 @@ ShipConstructor.prototype.setPosVertical = function(y, x) {
         }
         board.testBoard[y][x] = this.name;
         y++;
-        console.log('good')
     }
     board.saveState();
 }
 
-ShipConstructor.prototype.isSunk = function() {
+ShipConstructor.prototype.hit = function() {
+    this.health--;
+    console.log(this.name, 'hit', this.health,)
     if (this.health <= 0) {
         this.alive = false;
+        game.decideWinner()
     }
 }
 
-ShipConstructor.prototype.checkForHit = function(x) {
-
-}
-
-export {shipInit, resetShips, ships}
+export {shipInit, resetShips, playerShips, computerShips}
