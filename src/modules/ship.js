@@ -30,7 +30,6 @@ function shipInit() {
 ShipConstructor.prototype.setPos = function(y, x) {
     for (let i = 0; i < this.health; i++) {
         if (board.testBoard[y][x] != '') {
-            console.log('error from ship.js');
             board.loadState();
             return;
         }
@@ -43,7 +42,6 @@ ShipConstructor.prototype.setPos = function(y, x) {
 ShipConstructor.prototype.setPosVertical = function(y, x) {
     for (let i = 0; i < this.health; i++) {
         if (!board.testBoard[y] || board.testBoard[y][x] != '') {
-            console.log('error from ship.js');
             board.loadState();
             return;
         }
@@ -51,6 +49,34 @@ ShipConstructor.prototype.setPosVertical = function(y, x) {
         y++;
     }
     board.saveState();
+}
+
+ShipConstructor.prototype.aiRandomPlace = function() {
+    let y = Math.floor(Math.random() * 7);
+    let x = Math.floor(Math.random() * 7);
+    for (let i = 0; i < this.health; i++) {
+        if (!board.computerTestBoard[y] || board.computerTestBoard[y][x] != '') {
+            board.loadStateComputer();
+            return this.aiRandomPlace();
+        }
+        board.computerTestBoard[y][x] = this.name;
+        x++;
+    }
+    board.saveStateComputer();
+}
+
+ShipConstructor.prototype.aiRandomPlaceVertical = function() {
+    let y = Math.floor(Math.random() * 7);
+    let x = Math.floor(Math.random() * 7);
+    for (let i = 0; i < this.health; i++) {
+        if (!board.computerTestBoard[y] || board.computerTestBoard[y][x] != '') {
+            board.loadStateComputer();
+            return this.aiRandomPlace();
+        }
+        board.computerTestBoard[y][x] = this.name;
+        y++;
+    }
+    board.saveStateComputer();
 }
 
 ShipConstructor.prototype.hit = function() {

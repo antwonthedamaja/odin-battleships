@@ -8,9 +8,11 @@ let gameBoard = [['', '', '', '', '', '', ''],
                 ['', '', '', '', '', '', ''],
                 ['', '', '', '', '', '', '']];
 
+let testBoard = structuredClone(gameBoard);
+
 let computerBoard = structuredClone(gameBoard);
 
-let testBoard = structuredClone(gameBoard);
+let computerTestBoard = structuredClone(gameBoard);
 
 function saveState() {
     gameBoard = structuredClone(testBoard);
@@ -18,6 +20,14 @@ function saveState() {
 
 function loadState() {
     testBoard = structuredClone(gameBoard);
+}
+
+function saveStateComputer() {
+    computerBoard = structuredClone(computerTestBoard);
+}
+
+function loadStateComputer() {
+    computerTestBoard = structuredClone(computerBoard);
 }
 
 function recieveAttack(y, x) {
@@ -56,4 +66,5 @@ function recieveAttackComputer(y, x) {
 }
 
 export {recieveAttack, recieveAttackComputer, saveState, loadState, 
-    computerBoard, testBoard, gameBoard}
+    saveStateComputer, loadStateComputer, computerBoard, testBoard, 
+    gameBoard, computerTestBoard}

@@ -1,4 +1,10 @@
 import * as ship from "./ship";
+import * as computer from './computer.js';
+
+function initGame() {
+    ship.shipInit();
+    computer.aiPlaceAll();
+}
 
 function decideWinner() {
     if (ship.playerShips.every(item => item.alive === false)) {
@@ -8,4 +14,4 @@ function decideWinner() {
     }
 }
 
-export {decideWinner}
+export {initGame, decideWinner}
