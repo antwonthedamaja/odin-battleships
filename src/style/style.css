@@ -11,28 +11,42 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-grow: 1;
+    flex-grow: 2;
     font-size: 2rem;
     font-weight: 700;
 }
 
+#container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 5;
+    align-items: center;
+}
+
 #content {
     display: flex;
-    flex-grow: 2;
     justify-content: center;
-    gap: 5rem;
-}
-
-#box1 {
-
-}
-
-#box2 {
-
+    gap: 4rem;
+    height: 55%;
+    width: 100%;
 }
 
 .box {
     height: 20rem;
     width: 20rem;
     border: 2px solid black;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.tile {
+    height: 2.8571rem;
+    width: 2.8571rem;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+button {
+    margin: 1rem;
+    width: 5rem;
 }
