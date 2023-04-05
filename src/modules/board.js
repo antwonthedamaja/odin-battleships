@@ -1,12 +1,14 @@
 import * as ship from "./ship";
 
 let gameBoard = [['', '', '', '', '', '', ''],
-             ['', '', '', '', '', '', ''],
-             ['', '', '', '', '', '', ''],
-             ['', '', '', '', '', '', ''],
-             ['', '', '', '', '', '', ''],
-             ['', '', '', '', '', '', ''],
-             ['', '', '', '', '', '', '']];
+                ['', '', '', '', '', '', ''],
+                ['', '', '', '', '', '', ''],
+                ['', '', '', '', '', '', ''],
+                ['', '', '', '', '', '', ''],
+                ['', '', '', '', '', '', ''],
+                ['', '', '', '', '', '', '']];
+
+let computerBoard = structuredClone(gameBoard);
 
 let testBoard = structuredClone(gameBoard);
 
@@ -33,7 +35,25 @@ function recieveAttack(y, x) {
     } else {
         gameBoard[y][x] = 'X';
     }
-    loadState()
+    loadState();
 }
 
-export {recieveAttack, saveState, loadState, testBoard, gameBoard}
+function recieveAttackComputer(y, x) {
+    if (computerBoard[y][x] === 'X') {
+        console.log('attack rejected');
+        return;
+    }
+    if (computerBoard[y][x] != '') {
+        ship.computerShips.forEach(item => {
+            if (computerBoard[y][x] === item.name) {
+                item.hit();
+                computerBoard[y][x] = 'X';
+            }
+        });
+    } else {
+        computerBoard[y][x] = 'X';
+    }
+}
+
+export {recieveAttack, recieveAttackComputer, saveState, loadState, 
+    computerBoard, testBoard, gameBoard}

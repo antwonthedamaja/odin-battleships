@@ -4,8 +4,15 @@ import * as computer from './computer.js';
 let playerShips = [];
 let computerShips = [];
 
+function ShipConstructor(name, health) {
+    this.name = name;
+    this.health = health;
+    this.alive = true;
+}
+
 function shipInit() {
-    resetShips();
+    computerShips = [];
+    playerShips = [];
     const carrier = new ShipConstructor("C", 5);
     const battleship = new ShipConstructor("B", 4);
     const destroyer = new ShipConstructor("D", 3);
@@ -18,17 +25,6 @@ function shipInit() {
     const submarineAI = new ShipConstructor("S", 3);
     const patrolBoatAI = new ShipConstructor("P", 2);
     computerShips.push(carrierAI, battleshipAI, destroyerAI, submarineAI, patrolBoatAI);
-}
-
-function resetShips() {
-    computerShips = [];
-    playerShips = [];
-}
-
-function ShipConstructor(name, health) {
-    this.name = name;
-    this.health = health;
-    this.alive = true;
 }
 
 ShipConstructor.prototype.setPos = function(y, x) {
@@ -59,11 +55,11 @@ ShipConstructor.prototype.setPosVertical = function(y, x) {
 
 ShipConstructor.prototype.hit = function() {
     this.health--;
-    console.log(this.name, 'hit', this.health,)
+    console.log(this.name, 'hit', this.health)
     if (this.health <= 0) {
         this.alive = false;
         game.decideWinner()
     }
 }
 
-export {shipInit, resetShips, playerShips, computerShips}
+export {shipInit, playerShips, computerShips}
