@@ -27,6 +27,8 @@ function shipInit() {
 }
 
 ShipConstructor.prototype.setPos = function(y, x) {
+    // y = parseInt(y);
+    // x = parseInt(x);
     for (let i = 0; i < this.health; i++) {
         if (board.testBoard[y][x] != '') {
             board.loadState();
@@ -36,6 +38,7 @@ ShipConstructor.prototype.setPos = function(y, x) {
         x++;
     }
     board.saveState();
+    return true;
 }
 
 ShipConstructor.prototype.setPosVertical = function(y, x) {
@@ -48,6 +51,7 @@ ShipConstructor.prototype.setPosVertical = function(y, x) {
         y++;
     }
     board.saveState();
+    return true;
 }
 
 ShipConstructor.prototype.aiRandomPlace = function() {

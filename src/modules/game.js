@@ -1,9 +1,19 @@
 import * as ship from "./ship";
 import * as computer from './computer.js';
+import * as display from './display.js';
+
+let gameState = false;
+let placeState = false;
 
 function initGame() {
+    gameState = true;
+    setPlaceState('c');
     ship.shipInit();
     computer.aiPlaceAll();
+}
+
+function setPlaceState(setting) {
+    placeState = setting;
 }
 
 function decideWinner() {
@@ -14,4 +24,4 @@ function decideWinner() {
     }
 }
 
-export {initGame, decideWinner}
+export {initGame, decideWinner, setPlaceState, gameState, placeState}

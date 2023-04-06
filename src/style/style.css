@@ -50,3 +50,9 @@ button {
     margin: 1rem;
     width: 5rem;
 }
+
+#container > div:last-child {
+    margin-top: .5rem;
+    font-size: .75rem;
+    color: rgb(106, 104, 104);
+}
