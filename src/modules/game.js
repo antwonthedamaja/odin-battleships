@@ -1,6 +1,7 @@
 import * as ship from "./ship";
 import * as computer from './computer.js';
 import * as display from './display.js';
+import * as board from './board.js';
 
 let gameState = false;
 
@@ -8,6 +9,12 @@ function initGame() {
     gameState = true;
     ship.shipInit();
     computer.aiPlaceAll();
+}
+
+function endGame() {
+    gameState = false;
+    ship.resetShips();
+    board.resetBoards();
 }
 
 function decideWinner() {
@@ -18,4 +25,4 @@ function decideWinner() {
     }
 }
 
-export {initGame, decideWinner, gameState}
+export {initGame, decideWinner, endGame, gameState}

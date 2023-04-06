@@ -1,6 +1,6 @@
 import * as ship from "./ship";
 
-let gameBoard = [['', '', '', '', '', '', ''],
+let boardOriginal = [['', '', '', '', '', '', ''],
                 ['', '', '', '', '', '', ''],
                 ['', '', '', '', '', '', ''],
                 ['', '', '', '', '', '', ''],
@@ -8,11 +8,13 @@ let gameBoard = [['', '', '', '', '', '', ''],
                 ['', '', '', '', '', '', ''],
                 ['', '', '', '', '', '', '']];
 
-let testBoard = structuredClone(gameBoard);
+let gameBoard = structuredClone(boardOriginal);
 
-let computerBoard = structuredClone(gameBoard);
+let testBoard = structuredClone(boardOriginal);
 
-let computerTestBoard = structuredClone(gameBoard);
+let computerBoard = structuredClone(boardOriginal);
+
+let computerTestBoard = structuredClone(boardOriginal);
 
 function saveState() {
     gameBoard = structuredClone(testBoard);
@@ -28,6 +30,13 @@ function saveStateComputer() {
 
 function loadStateComputer() {
     computerTestBoard = structuredClone(computerBoard);
+}
+
+function resetBoards() {
+    gameBoard = structuredClone(boardOriginal);
+    testBoard = structuredClone(boardOriginal);
+    computerBoard = structuredClone(boardOriginal);
+    computerTestBoard = structuredClone(boardOriginal);
 }
 
 function recieveAttack(y, x) {
@@ -66,5 +75,5 @@ function recieveAttackComputer(y, x) {
 }
 
 export {recieveAttack, recieveAttackComputer, saveState, loadState, 
-    saveStateComputer, loadStateComputer, computerBoard, testBoard, 
+    saveStateComputer, loadStateComputer, resetBoards, computerBoard, testBoard, 
     gameBoard, computerTestBoard}

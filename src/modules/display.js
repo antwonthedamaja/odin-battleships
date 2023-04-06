@@ -13,6 +13,11 @@ button.addEventListener('click', () => {
         button.textContent = 'Cancel?';
     } else if (game.gameState === true) {
         button.textContent = 'Start?';
+        displayArray = [];
+        game.endGame();
+        placeState = true;
+        handleMouseOut();
+        placeState = false;
     }
 });
 
@@ -36,7 +41,7 @@ tiles.forEach((tile, index) => {
     tile.addEventListener("mouseout", handleMouseOut);
 });
 
-const displayArray = [];
+let displayArray = [];
 
 let rotateState = false;
 
@@ -135,14 +140,14 @@ function handleClick(tile) {
         if (ship.playerShips[4].setPosVertical(data[0], data[1])) {
             clickPlaceVertical(tile, data, 2, 'hsl(122, 100%, 50%)');
             placeState = false;
-            console.table(board.gameBoard)
+            console.table(board.gameBoard);
         }
     }
 }
 
 function hoverAtCursor(index, data, n, colorValue) {
     for (let i = 0; i < n; i++) {
-        if (!displayArray.includes(parseInt(index) + i) && tilesArray[parseInt(data[0])][parseInt(data[1])+i]) {
+        if (!displayArray.includes(parseInt(index)+i) && tilesArray[parseInt(data[0])][parseInt(data[1])+i]) {
             let tile = tilesArray[parseInt(data[0])][parseInt(data[1])+i];
             tile.style.backgroundColor = colorValue;
         }
@@ -155,7 +160,7 @@ function hoverAtCursorVertical(index, data, n, colorValue) {
             let tile = tilesArray[parseInt(data[0])+i][parseInt(data[1])];
             tile.style.backgroundColor = colorValue;
         } else {
-            return
+            return;
         }
     }
 }

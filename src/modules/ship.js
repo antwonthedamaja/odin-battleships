@@ -9,9 +9,12 @@ function ShipConstructor(name, health) {
     this.alive = true;
 }
 
-function shipInit() {
+function resetShips() {
     computerShips = [];
     playerShips = [];
+}
+
+function shipInit() {
     const carrier = new ShipConstructor("C", 5);
     const battleship = new ShipConstructor("B", 4);
     const destroyer = new ShipConstructor("D", 3);
@@ -91,4 +94,4 @@ ShipConstructor.prototype.hit = function() {
     }
 }
 
-export {shipInit, playerShips, computerShips}
+export {shipInit, resetShips, playerShips, computerShips}
