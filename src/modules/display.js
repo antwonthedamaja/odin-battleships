@@ -12,6 +12,7 @@ button.addEventListener('click', () => {
         game.initGame();
         placeState = 'c';
         button.textContent = 'Cancel?';
+        changeStatus('Have fun!');
     } else if (game.gameState === true) {
         endGameDOM();
         game.endGame();
@@ -258,4 +259,10 @@ function changePlayerBoard(y, x, result) {
     }
 }
 
-export {endGameDOM, changePlayerBoard}
+const status = document.querySelector('#status');
+
+function changeStatus(text) {
+    status.textContent = text;
+}
+
+export {endGameDOM, changePlayerBoard, changeStatus}

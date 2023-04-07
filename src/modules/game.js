@@ -25,11 +25,11 @@ function endGame() {
 
 function decideWinner() {
     if (ship.playerShips.every(item => item.alive === false)) {
-        console.log('player dead');
+        display.changeStatus('Computer Wins!');
         endGame();
         display.endGameDOM();
     } else if (ship.computerShips.every(item => item.alive === false)){
-        console.log('computer dead');
+        display.changeStatus('Player Wins!');
         endGame();
         display.endGameDOM();
         return true;

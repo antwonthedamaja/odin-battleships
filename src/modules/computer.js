@@ -21,7 +21,7 @@ function launchAttack() {
             display.changePlayerBoard(y, x, result);
             game.playerSwitch();
         }
-    }, 0);
+    }, 125);
 }
 
 export {aiPlaceAll, launchAttack}

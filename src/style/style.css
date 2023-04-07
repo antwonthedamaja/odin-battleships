@@ -27,7 +27,7 @@ body {
     display: flex;
     justify-content: center;
     gap: 4rem;
-    height: 55%;
+    height: 40%;
     width: 100%;
 }
 
@@ -50,11 +50,6 @@ body {
     font-size: 2.5rem;
 }
 
-.tile > div {
-    max-width: fit-content;
-    max-height: fit-content;
-}
-
 button {
     margin: 1rem;
     width: 5rem;
@@ -64,4 +59,9 @@ button {
     margin-top: .5rem;
     font-size: .75rem;
     color: rgb(106, 104, 104);
+}
+
+#status {
+    margin: 1rem;
+    font-size: .90rem;
 }

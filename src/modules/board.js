@@ -10,11 +10,8 @@ let boardOriginal = [['', '', '', '', '', '', ''],
                 ['', '', '', '', '', '', '']];
 
 let gameBoard = structuredClone(boardOriginal);
-
 let testBoard = structuredClone(boardOriginal);
-
 let computerBoard = structuredClone(boardOriginal);
-
 let computerTestBoard = structuredClone(boardOriginal);
 
 function saveState() {
@@ -42,7 +39,6 @@ function resetBoards() {
 
 function recieveAttack(y, x) {
     if (gameBoard[y][x] === 'X' || game.playerTurn === true) {
-        console.log('attack rejected');
         return;
     } else if (gameBoard[y][x] != '') {
         ship.playerShips.forEach(item => {
