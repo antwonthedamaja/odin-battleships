@@ -1,4 +1,5 @@
 import * as ship from "./ship";
+import * as game from './game.js';
 
 let boardOriginal = [['', '', '', '', '', '', ''],
                 ['', '', '', '', '', '', ''],
@@ -40,11 +41,10 @@ function resetBoards() {
 }
 
 function recieveAttack(y, x) {
-    if (gameBoard[y][x] === 'X') {
+    if (gameBoard[y][x] === 'X' || game.playerTurn === true) {
         console.log('attack rejected');
         return;
-    }
-    if (gameBoard[y][x] != '') {
+    } else if (gameBoard[y][x] != '') {
         ship.playerShips.forEach(item => {
             if (gameBoard[y][x] === item.name) {
                 item.hit();
@@ -55,22 +55,26 @@ function recieveAttack(y, x) {
         gameBoard[y][x] = 'X';
     }
     loadState();
+    game.playerSwitch();
 }
 
 function recieveAttackComputer(y, x) {
-    if (computerBoard[y][x] === 'X') {
+    if (computerBoard[y][x] === 'X' || game.playerTurn === false) {
         console.log('attack rejected');
         return;
-    }
-    if (computerBoard[y][x] != '') {
+    } else if (computerBoard[y][x] != '') {
         ship.computerShips.forEach(item => {
             if (computerBoard[y][x] === item.name) {
                 item.hit();
                 computerBoard[y][x] = 'X';
             }
         });
+        game.playerSwitch();
+        return 'hit';
     } else {
         computerBoard[y][x] = 'X';
+        game.playerSwitch();
+        return 'miss';
     }
 }
 

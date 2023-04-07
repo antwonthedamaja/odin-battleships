@@ -1,4 +1,5 @@
 import * as board from './board.js';
+import * as game from './game.js';
 
 let playerShips = [];
 let computerShips = [];
@@ -90,7 +91,6 @@ ShipConstructor.prototype.hit = function() {
     console.log(this.name, 'hit', this.health)
     if (this.health <= 0) {
         this.alive = false;
-        game.decideWinner()
     }
 }
 

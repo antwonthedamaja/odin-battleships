@@ -12,14 +12,21 @@ button.addEventListener('click', () => {
         placeState = 'c';
         button.textContent = 'Cancel?';
     } else if (game.gameState === true) {
-        button.textContent = 'Start?';
-        displayArray = [];
+        endGameDOM();
         game.endGame();
-        placeState = true;
-        handleMouseOut();
-        placeState = false;
     }
 });
+
+function endGameDOM() {
+    button.textContent = 'Start?';
+    displayArray = [];
+    placeState = true;
+    handleMouseOut();
+    placeState = false;
+    enemyTiles.forEach(tile => {
+        tile.innerHTML = '';
+    });
+}
 
 const tiles = document.querySelectorAll('.player.tile');
 let tilesArray = Array.from(tiles);
@@ -110,6 +117,7 @@ function handleClick(tile) {
         if (ship.playerShips[4].setPos(data[0], data[1])) {
             clickPlace(tile, data, 2, 'hsl(122, 100%, 50%)');
             placeState = false;
+            game.playerSwitch();
         }
     } else if (placeState === 'c' && rotateState === true) {
         let data = tile.target.dataset.array.split(' ');
@@ -140,7 +148,7 @@ function handleClick(tile) {
         if (ship.playerShips[4].setPosVertical(data[0], data[1])) {
             clickPlaceVertical(tile, data, 2, 'hsl(122, 100%, 50%)');
             placeState = false;
-            console.table(board.gameBoard);
+            game.playerSwitch();
         }
     }
 }
@@ -211,4 +219,25 @@ function handleMouseHover(tile) {
     }
 }
 
-export {}
+const enemyTiles = document.querySelectorAll('.computer.tile');
+
+enemyTiles.forEach((tile, index) => {
+    let data = logic.indexToArray(index);
+    tile.addEventListener('click', () => {
+        if (placeState === false && game.playerTurn === true) {
+            let result = board.recieveAttackComputer(data[0], data[1]);
+            const child = document.createElement('div');
+            if (result === 'hit') {
+                child.textContent = 'X';
+                child.style.color = 'red';
+                tile.appendChild(child); 
+                game.decideWinner();
+            } else if (result === 'miss'){
+                child.textContent = 'O';
+                tile.appendChild(child);
+            }
+        }
+    });
+});
+
+export {endGameDOM}
