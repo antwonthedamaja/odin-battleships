@@ -51,16 +51,17 @@ function recieveAttack(y, x) {
                 gameBoard[y][x] = 'X';
             }
         });
+        loadState();
+        return 'hit';
     } else {
         gameBoard[y][x] = 'X';
+        loadState();
+        return 'miss';
     }
-    loadState();
-    game.playerSwitch();
 }
 
 function recieveAttackComputer(y, x) {
     if (computerBoard[y][x] === 'X' || game.playerTurn === false) {
-        console.log('attack rejected');
         return;
     } else if (computerBoard[y][x] != '') {
         ship.computerShips.forEach(item => {
@@ -69,11 +70,9 @@ function recieveAttackComputer(y, x) {
                 computerBoard[y][x] = 'X';
             }
         });
-        game.playerSwitch();
         return 'hit';
     } else {
         computerBoard[y][x] = 'X';
-        game.playerSwitch();
         return 'miss';
     }
 }

@@ -2,6 +2,7 @@ import * as board from './board.js';
 import * as game from './game.js';
 import * as logic from './logic.js';
 import * as ship from "./ship";
+import * as computer from './computer.js';
 
 const button = document.querySelector('#start');
 let placeState = false;
@@ -23,6 +24,9 @@ function endGameDOM() {
     placeState = true;
     handleMouseOut();
     placeState = false;
+    tiles.forEach(tile => {
+        tile.innerHTML = '';
+    });
     enemyTiles.forEach(tile => {
         tile.innerHTML = '';
     });
@@ -231,13 +235,27 @@ enemyTiles.forEach((tile, index) => {
                 child.textContent = 'X';
                 child.style.color = 'red';
                 tile.appendChild(child); 
-                game.decideWinner();
-            } else if (result === 'miss'){
+                if (game.decideWinner()) return;
+            } else if (result === 'miss') {
                 child.textContent = 'O';
                 tile.appendChild(child);
             }
+            game.playerSwitch();
+            computer.launchAttack();
         }
     });
 });
 
-export {endGameDOM}
+function changePlayerBoard(y, x, result) {
+    const child = document.createElement('div');
+    if (result === 'hit') {
+        child.textContent = 'X';
+        tilesArray[y][x].appendChild(child);
+        game.decideWinner();
+    } else {
+        child.textContent = 'O';
+        tilesArray[y][x].appendChild(child);
+    }
+}
+
+export {endGameDOM, changePlayerBoard}

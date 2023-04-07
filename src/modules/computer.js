@@ -1,4 +1,7 @@
+import * as board from './board.js';
 import * as ship from "./ship";
+import * as display from './display.js';
+import * as game from './game.js';
 
 function aiPlaceAll() {
     for (let i = 0; i < ship.computerShips.length; i++) {
@@ -7,4 +10,18 @@ function aiPlaceAll() {
     }
 }
 
-export {aiPlaceAll}
+function launchAttack() {
+    let y = Math.floor(Math.random() * 7);
+    let x = Math.floor(Math.random() * 7);
+    setTimeout(() => {
+        let result = board.recieveAttack(y, x);
+        if (!result) {
+            launchAttack();
+        } else {
+            display.changePlayerBoard(y, x, result);
+            game.playerSwitch();
+        }
+    }, 0);
+}
+
+export {aiPlaceAll, launchAttack}

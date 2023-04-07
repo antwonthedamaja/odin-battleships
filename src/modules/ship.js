@@ -1,5 +1,4 @@
 import * as board from './board.js';
-import * as game from './game.js';
 
 let playerShips = [];
 let computerShips = [];

@@ -14,7 +14,6 @@ function initGame() {
 
 function playerSwitch() {
     playerTurn = !playerTurn;
-    console.table(board.computerBoard)
 }
 
 function endGame() {
@@ -33,6 +32,7 @@ function decideWinner() {
         console.log('computer dead');
         endGame();
         display.endGameDOM();
+        return true;
     }
 }
 
