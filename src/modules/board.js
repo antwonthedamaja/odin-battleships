@@ -57,7 +57,7 @@ function recieveAttack(y, x) {
 }
 
 function recieveAttackComputer(y, x) {
-    if (computerBoard[y][x] === 'X' || game.playerTurn === false) {
+    if (computerBoard[y][x] === 'X' || computerBoard[y][x] === 'O' || game.playerTurn === false) {
         return;
     } else if (computerBoard[y][x] != '') {
         ship.computerShips.forEach(item => {

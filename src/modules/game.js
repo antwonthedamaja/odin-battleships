@@ -23,13 +23,18 @@ function endGame() {
     playerTurn = false;
 }
 
+let computerScore = 0;
+let playerScore = 0;
+
 function decideWinner() {
     if (ship.playerShips.every(item => item.alive === false)) {
-        display.changeStatus('Computer Wins!');
+        computerScore++;
+        display.changeStatus(`Computer Wins! ${playerScore} - ${computerScore}`);
         endGame();
         display.endGameDOM();
     } else if (ship.computerShips.every(item => item.alive === false)){
-        display.changeStatus('Player Wins!');
+        playerScore++;
+        display.changeStatus(`Player Wins! ${playerScore} - ${computerScore}`);
         endGame();
         display.endGameDOM();
         return true;

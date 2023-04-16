@@ -92,7 +92,7 @@ function clickPlaceVertical(tile, data, n, colorValue) {
 
 function handleClick(tile) {
     if (placeState === false) {
-
+        //do nothing
     } else if (placeState === 'c' && rotateState === false) {
         let data = tile.target.dataset.array.split(' ');
         if (ship.playerShips[0].setPos(data[0], data[1])) {
@@ -232,7 +232,9 @@ enemyTiles.forEach((tile, index) => {
         if (placeState === false && game.playerTurn === true) {
             let result = board.recieveAttackComputer(data[0], data[1]);
             const child = document.createElement('div');
-            if (result === 'hit') {
+            if (!result) {
+                return;
+            } else if (result === 'hit') {
                 child.textContent = 'X';
                 child.style.color = 'red';
                 tile.appendChild(child); 
