@@ -19,7 +19,7 @@ body {
 #container {
     display: flex;
     flex-direction: column;
-    flex-grow: 5;
+    flex-grow: 4;
     align-items: center;
 }
 
@@ -27,8 +27,7 @@ body {
     display: flex;
     justify-content: center;
     gap: 4rem;
-    height: 40%;
-    width: 100%;
+    margin-bottom: 3rem;
 }
 
 .box {
@@ -62,6 +61,5 @@ button {
 }
 
 #status {
-    margin: 1rem;
     font-size: .90rem;
 }
