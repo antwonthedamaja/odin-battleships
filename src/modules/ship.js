@@ -77,7 +77,7 @@ ShipConstructor.prototype.aiRandomPlaceVertical = function() {
     for (let i = 0; i < this.health; i++) {
         if (!board.computerTestBoard[y] || board.computerTestBoard[y][x] != '') {
             board.loadStateComputer();
-            return this.aiRandomPlace();
+            return this.aiRandomPlaceVertical();
         }
         board.computerTestBoard[y][x] = this.name;
         y++;
